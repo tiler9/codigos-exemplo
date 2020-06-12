@@ -130,4 +130,3 @@ function populaEstados(campopreenchido) {
         $(campopreenchido).append('<option value="' + estados[i].sigla + '">' + estados[i].sigla + '</option>');
     }
 }
-
