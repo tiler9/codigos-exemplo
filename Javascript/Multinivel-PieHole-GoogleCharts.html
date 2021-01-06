@@ -1,0 +1,69 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+ <div id="donut_1" ></div>
+ <div id="donut_2"></div>
+       
+<script type="text/javascript">
+
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    let larguraGraficoFora = 400;
+    let alturaGraficoFora = 400;
+    let furoGraficoFora = 0.8;
+
+    var data = google.visualization.arrayToDataTable([
+      ['Sabor de Pizza', 'Quantidade'],
+      ['portuguesa',     30],
+      ['frango com catupiry',     30],
+      ['calabresa',     30],
+      ['alguma doce',     30],
+    ]);
+
+    var options = {
+      width: larguraGraficoFora,
+      height: alturaGraficoFora,
+      chartArea:{left:0,top:0,width:'100%',height:'100%'},
+      pieHole: furoGraficoFora,
+      legend: 'none'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('donut_1'));
+    chart.draw(data, options);
+    
+    var data2 = google.visualization.arrayToDataTable([
+      ['Effort', 'Amount given'],
+      ['portuguesa',     30],
+      ['frango com catupiry',     30],
+      ['calabresa',     30],
+      ['alguma doce',     30],
+    ]);
+
+    var options2 = {
+      legend:'none',
+      width: larguraGraficoFora*furoGraficoFora,
+      height: alturaGraficoFora*furoGraficoFora,
+      chartArea:{left:0,top:0,width:'100%',height:'100%'},
+      backgroundColor: 'transparent',
+      legend: 'none'
+    };
+
+    var chart2 = new google.visualization.PieChart(document.getElementById('donut_2'));
+    chart2.draw(data2, options2);
+    ajustePosicaoPieCentral(larguraGraficoFora, alturaGraficoFora, furoGraficoFora);
+  }
+
+
+  function ajustePosicaoPieCentral(largura, altura, furo){
+
+      yt = altura*(1+furo)/2.0;
+      xt = largura*(1-furo)/2.0;
+
+      var css = document.getElementById('donut_2');
+      css.style.transform = "translate("+xt+"px, -"+yt+"px)";
+  }    
+
+
+</script>
